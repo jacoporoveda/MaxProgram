@@ -26,8 +26,8 @@ int main(void) {
 
 void Prologo(void) {
 	
-	char continua = 'x';
-	bool verifica = false;
+	char continua;
+	bool verifica;
 	
 	printf("\n                   PROLOGO                   \n\n");
 	
@@ -94,7 +94,18 @@ void Prologo(void) {
 	printf("PER LEGGERE LE REGOLE DI COMBATTIMENTO PREMI c\n");
 	printf("PER INIZIARE A GIOCARE PREMI 1: ");
 	
+	/*
+	non ci sono scanf precedenti, quindi per froza al primo giro si entra in errore con l'else essendo continua
+	preimpostato a x devi dare la chance di sceglire un'input al giocatore, opto per uno scanf all'inzio del do
+	ed applico ulteriori modifiche per evitare si entri in più di un if. DEINIZIALIZO IL CONTINUA. ALTREA DOMANDA
+	CONTINUA è un CHAR, SICURO DI POTERLO IMPOSTARE UGUALE AD 1?
+	*/
+	
+	
 	do {
+		scanf("%c", &continua);
+		getchar();
+		
 		if(continua == 'r') {
 			Regole();
 			verifica = true;
@@ -109,7 +120,7 @@ void Prologo(void) {
 			}
 		else {
 			printf("Non consentito, riprova\n");
-			scanf("%c", &continua);
+			verifica = false
 			}
 		} while(verifica == false);
 	}
